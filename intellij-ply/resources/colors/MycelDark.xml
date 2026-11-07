@@ -1,0 +1,33 @@
+<scheme name="Mycel Dark" version="142" parent_scheme="Darcula">
+  <colors>
+    <option name="CARET_COLOR" value="4085ff" />
+    <option name="CARET_ROW_COLOR" value="151820" />
+    <option name="SELECTION_BACKGROUND" value="264f78" />
+    <option name="LINE_NUMBERS_COLOR" value="5b6270" />
+    <option name="GUTTER_BACKGROUND" value="0d0f12" />
+  </colors>
+  <attributes>
+    <option name="PLY_KEYWORD"><value><option name="FOREGROUND" value="c792ea" /><option name="FONT_TYPE" value="1" /></value></option>
+    <option name="PLY_VARIABLE"><value><option name="FOREGROUND" value="9cdcfe" /></value></option>
+    <option name="PLY_TYPE"><value><option name="FOREGROUND" value="82aaff" /></value></option>
+    <option name="PLY_BUILTIN_TYPE"><value><option name="FOREGROUND" value="5ccfe6" /></value></option>
+    <option name="PLY_FUNCTION_DECLARATION"><value><option name="FOREGROUND" value="ffd580" /></value></option>
+    <option name="PLY_FUNCTION_CALL"><value><option name="FOREGROUND" value="82d4ff" /></value></option>
+    <option name="PLY_STRING"><value><option name="FOREGROUND" value="a5d6a7" /></value></option>
+    <option name="PLY_NUMBER"><value><option name="FOREGROUND" value="f7b267" /></value></option>
+    <option name="PLY_LINE_COMMENT"><value><option name="FOREGROUND" value="6b7280" /><option name="FONT_TYPE" value="2" /></value></option>
+    <option name="PLY_DOC_COMMENT"><value><option name="FOREGROUND" value="8b95a3" /><option name="FONT_TYPE" value="2" /></value></option>
+    <option name="PLY_BLOCK_COMMENT"><value><option name="FOREGROUND" value="6b7280" /><option name="FONT_TYPE" value="2" /></value></option>
+    <option name="PLY_OPERATOR"><value><option name="FOREGROUND" value="89ddff" /></value></option>
+    <option name="PLY_PARENTHESES"><value><option name="FOREGROUND" value="a0a6b0" /></value></option>
+    <option name="PLY_BRACKETS"><value><option name="FOREGROUND" value="a0a6b0" /></value></option>
+    <option name="PLY_BRACES"><value><option name="FOREGROUND" value="a0a6b0" /></value></option>
+    <option name="PLY_COMMA"><value><option name="FOREGROUND" value="a0a6b0" /></value></option>
+    <option name="PLY_SEMICOLON"><value><option name="FOREGROUND" value="a0a6b0" /></value></option>
+    <option name="PLY_DOT"><value><option name="FOREGROUND" value="a0a6b0" /></value></option>
+    <option name="PLY_INTERPOLATION"><value><option name="FOREGROUND" value="4085ff" /><option name="FONT_TYPE" value="1" /></value></option>
+    <option name="PLY_BAD_CHARACTER"><value><option name="FOREGROUND" value="ff6961" /></value></option>
+    <option name="TEXT"><value><option name="FOREGROUND" value="e3e5e8" /><option name="BACKGROUND" value="0d0f12" /></value></option>
+    <option name="ERRORS_ATTRIBUTES"><value><option name="EFFECT_COLOR" value="ff6961" /><option name="EFFECT_TYPE" value="2" /></value></option>
+  </attributes>
+</scheme>

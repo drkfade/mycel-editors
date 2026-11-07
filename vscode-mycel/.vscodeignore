@@ -1,0 +1,6 @@
+test/**
+dist/**
+.vscode/**
+**/*.map
+package-lock.json
+scripts/**

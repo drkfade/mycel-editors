@@ -1,0 +1,67 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Mycel",
+  "scopeName": "source.mycel",
+  "patterns": [{ "include": "#illegal" }, { "include": "#comments" }, { "include": "#strings" }, { "include": "#numbers" }, { "include": "#modules" }, { "include": "#declarations" }, { "include": "#keywords" }, { "include": "#types" }, { "include": "#calls" }, { "include": "#operators" }],
+  "repository": {
+    "illegal": { "patterns": [
+      { "name": "invalid.illegal.error.syntax.mycel", "match": "#\\[|\\{:\\}|\\bthen\\b|\\belif\\b" }
+    ] },
+    "comments": { "patterns": [
+      { "name": "comment.line.documentation.mycel", "match": "///.*$" },
+      { "name": "comment.block.documentation.mycel", "begin": "/\\*\\*(?!/)", "end": "\\*/" },
+      { "name": "comment.block.mycel", "begin": "/\\*", "end": "\\*/" },
+      { "name": "comment.line.double-slash.mycel", "match": "//.*$" }
+    ] },
+    "strings": { "patterns": [
+      { "name": "string.quoted.triple.format.mycel", "begin": "\\bf\"\"\"", "end": "\"\"\"", "patterns": [{ "include": "#fstring-body" }] },
+      { "name": "string.quoted.double.format.mycel", "begin": "\\bf\"", "end": "\"|$", "patterns": [{ "include": "#fstring-body" }] },
+      { "name": "string.quoted.triple.mycel", "begin": "\"\"\"", "end": "\"\"\"", "patterns": [{ "include": "#escapes" }] },
+      { "name": "string.quoted.double.mycel", "begin": "\"", "end": "\"|$", "patterns": [{ "include": "#escapes" }] },
+      { "name": "string.quoted.single.char.mycel", "match": "'(?:\\\\(?:[ntr0\\\\\"'$b]|u\\{[0-9a-fA-F]+\\})|[^'\\\\])'", "captures": {} }
+    ] },
+    "escapes": { "name": "constant.character.escape.mycel", "match": "\\\\(?:[ntr0\\\\\"'$b]|u\\{[0-9a-fA-F]+\\})" },
+    "fstring-body": { "patterns": [
+      { "name": "constant.character.escape.brace.mycel", "match": "\\{\\{|\\}\\}" },
+      { "include": "#escapes" },
+      { "name": "meta.interpolation.mycel", "begin": "\\{", "beginCaptures": { "0": { "name": "punctuation.section.interpolation.begin.mycel" } }, "end": "\\}", "endCaptures": { "0": { "name": "punctuation.section.interpolation.end.mycel" } }, "patterns": [{ "include": "#interp-expr" }] }
+    ] },
+    "interp-expr": { "patterns": [
+      { "name": "constant.other.format-spec.mycel", "match": ":[^{}\"]*(?=\\})" },
+      { "include": "#numbers" }, { "include": "#keywords" }, { "include": "#types" }, { "include": "#calls" }, { "include": "#operators" },
+      { "begin": "\\{", "end": "\\}", "patterns": [{ "include": "#interp-expr" }] }
+    ] },
+    "numbers": { "patterns": [
+      { "name": "constant.numeric.hex.mycel", "match": "\\b0[xX][0-9a-fA-F_]+\\b" },
+      { "name": "constant.numeric.binary.mycel", "match": "\\b0[bB][01_]+\\b" },
+      { "name": "constant.numeric.octal.mycel", "match": "\\b0[oO][0-7_]+\\b" },
+      { "name": "constant.numeric.float.mycel", "match": "\\b[0-9][0-9_]*(?:\\.[0-9][0-9_]*(?:[eE][+-]?[0-9]+)?|[eE][+-]?[0-9]+)\\b" },
+      { "name": "constant.numeric.integer.mycel", "match": "\\b[0-9][0-9_]*\\b" }
+    ] },
+    "modules": { "patterns": [
+      { "match": "\\b(std)\\.([a-z_][\\p{L}\\p{N}_]*)", "captures": { "1": { "name": "support.module.mycel" }, "2": { "name": "support.module.submodule.mycel" } } }
+    ] },
+    "declarations": { "patterns": [
+      { "match": "\\b(fn)\\s+([A-Za-z_][\\p{L}\\p{N}_]*)", "captures": { "1": { "name": "storage.type.function.mycel" }, "2": { "name": "entity.name.function.mycel" } } },
+      { "match": "\\b(class|struct|interface|enum|type)\\s+([A-Za-z_][\\p{L}\\p{N}_]*)", "captures": { "1": { "name": "storage.type.class.mycel" }, "2": { "name": "entity.name.type.mycel" } } }
+    ] },
+    "keywords": { "patterns": [
+      { "name": "constant.language.mycel", "match": "\\b(?:true|false|nil)\\b" },
+      { "name": "variable.language.mycel", "match": "\\b(?:self|super)\\b" },
+      { "name": "keyword.control.mycel", "match": "\\b(?:if|else|while|for|in|match|return|break|continue|throw|try|catch|finally|await|spawn|yield)\\b" },
+      { "name": "keyword.operator.word.mycel", "match": "\\b(?:is|as|and|or|not)\\b" },
+      { "name": "keyword.other.import.mycel", "match": "\\b(?:import)\\b" },
+      { "name": "storage.modifier.mycel", "match": "\\b(?:pub|private|protected|static|override|async|gen|extern|operator|init|extend|test)\\b" },
+      { "name": "storage.type.mycel", "match": "\\b(?:let|var|fn|class|struct|interface|enum|type)\\b" }
+    ] },
+    "types": { "patterns": [
+      { "name": "support.type.primitive.mycel", "match": "\\b(?:Int|Float|Bool|String|Char|Void|Never|Any|Set)\\b" },
+      { "name": "entity.name.type.mycel", "match": "\\b[A-Z][\\p{L}\\p{N}_]*\\b" }
+    ] },
+    "calls": { "match": "\\b([a-z_][\\p{L}\\p{N}_]*)(?=\\s*\\()", "name": "entity.name.function.call.mycel" },
+    "operators": { "patterns": [
+      { "name": "keyword.operator.mycel", "match": "\\.\\.=|\\.\\.\\.|\\.\\.|\\?\\.|\\?\\?=?|\\|>|=>|->|[-+*/%]=?|\\*\\*=?|<<=?|>>=?|[<>]=?|==|!=|&&|\\|\\||[!&|^~?]" },
+      { "name": "keyword.operator.assignment.mycel", "match": "=" }
+    ] }
+  }
+}

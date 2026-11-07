@@ -1,0 +1,41 @@
+<idea-plugin>
+  <id>xyz.ol1x.mycel</id>
+  <name>Mycel Language</name>
+  <version>1.0.0</version>
+  <vendor url="https://ol1x.xyz">olix</vendor>
+  <description><![CDATA[
+    Support for the <b>Mycel</b> language (<code>.myc</code> and <code>.olx</code> files): syntax highlighting (keywords,
+    types, f-strings with <code>{x}</code> interpolation, comments, numbers, operators), brace matching, <kbd>Cmd+/</kbd>
+    commenting, a Run Configuration with gutter run icons on <code>fn main</code> and <code>test</code> blocks
+    (<code>mycel run</code> / <code>mycel test</code>), and inline errors and warnings from <code>mycel check --json</code>
+    with their explanations and suggested fixes.
+    <br/><br/>
+    Mycel is in development and its command-line tool is not publicly released yet: highlighting and the color schemes
+    work on their own; inline errors and running programs need the <code>mycel</code> tool (on your <code>PATH</code>, or
+    set in the run configuration). Try the language now in the browser:
+    <a href="https://ol1x.xyz/mycel/play/">ol1x.xyz/mycel/play</a>.
+    <br/><br/>
+    More about the language: <a href="https://ol1x.xyz/mycel">ol1x.xyz/mycel</a>.
+  ]]></description>
+  <change-notes><![CDATA[
+    <b>1.0.0</b>: first Marketplace release. Highlighting, Mycel Dark and Mycel Light color schemes, color settings page, run configurations and gutter run icons,
+    inline diagnostics from <code>mycel check --json</code>.
+  ]]></change-notes>
+  <idea-version since-build="243"/>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <bundledColorScheme path="/colors/MycelDark"/>
+    <bundledColorScheme path="/colors/MycelLight"/>
+    <fileType name="Ply" language="Ply" implementationClass="ply.PlyFileType" fieldName="INSTANCE" extensions="myc;olx"/>
+    <lang.parserDefinition language="Ply" implementationClass="ply.PlyParserDefinition"/>
+    <colorSettingsPage implementation="ply.PlyColorSettingsPage"/>
+    <lang.syntaxHighlighterFactory language="Ply" implementationClass="ply.PlyHighlighterFactory"/>
+    <lang.braceMatcher language="Ply" implementationClass="ply.PlyBraceMatcher"/>
+    <lang.commenter language="Ply" implementationClass="ply.PlyCommenter"/>
+    <quoteHandler fileType="Ply" className="ply.PlyQuoteHandler"/>
+    <externalAnnotator language="Ply" implementationClass="ply.PlyExternalAnnotator"/>
+    <configurationType implementation="ply.PlyRunConfigurationType"/>
+    <runConfigurationProducer implementation="ply.PlyRunConfigurationProducer"/>
+    <runLineMarkerContributor language="Ply" implementationClass="ply.PlyRunMarker"/>
+  </extensions>
+</idea-plugin>

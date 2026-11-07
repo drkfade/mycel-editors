@@ -1,0 +1,130 @@
+{
+  "name": "mycel",
+  "displayName": "Mycel",
+  "description": "Mycel language support: syntax highlighting, errors with fixes, hover types, go to definition, completion, outline, and a Run command.",
+  "version": "1.1.0",
+  "publisher": "olix",
+  "license": "Apache-2.0",
+  "icon": "images/icon.png",
+  "homepage": "https://ol1x.xyz/mycel/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drkfade/mycel-editors"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Themes"
+  ],
+  "keywords": [
+    "mycel",
+    "myc",
+    "olx"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "languages": [
+      {
+        "id": "mycel",
+        "aliases": [
+          "Mycel",
+          "mycel"
+        ],
+        "extensions": [
+          ".myc",
+          ".olx"
+        ],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./images/icon.png",
+          "dark": "./images/icon.png"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "mycel",
+        "scopeName": "source.mycel",
+        "path": "./syntaxes/mycel.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "mycel",
+        "path": "./snippets/mycel.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "mycel.run",
+        "title": "Mycel: Run File",
+        "icon": "$(play)"
+      },
+      {
+        "command": "mycel.restartServer",
+        "title": "Mycel: Restart Language Server"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "mycel.run",
+        "key": "ctrl+enter",
+        "mac": "cmd+enter",
+        "when": "editorLangId == mycel && editorTextFocus"
+      }
+    ],
+    "menus": {
+      "editor/title/run": [
+        {
+          "command": "mycel.run",
+          "when": "resourceLangId == mycel",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Mycel",
+      "properties": {
+        "mycel.path": {
+          "type": "string",
+          "default": "mycel",
+          "markdownDescription": "Path to the `mycel` executable (used for the language server and for Run)."
+        }
+      }
+    },
+    "configurationDefaults": {
+      "[mycel]": {
+        "editor.defaultFormatter": "olix.mycel"
+      }
+    },
+    "themes": [
+      {
+        "label": "Mycel Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/mycel-dark-color-theme.json"
+      },
+      {
+        "label": "Mycel Light",
+        "uiTheme": "vs",
+        "path": "./themes/mycel-light-color-theme.json"
+      }
+    ]
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "package": "vsce package --out dist/mycel-1.1.0.vsix"
+  },
+  "dependencies": {
+    "vscode-languageclient": "9.0.1"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "3.2.1",
+    "ovsx": "0.10.1",
+    "vscode-textmate": "9.2.0",
+    "vscode-oniguruma": "2.0.1"
+  }
+}

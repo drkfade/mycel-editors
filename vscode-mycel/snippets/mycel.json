@@ -1,0 +1,91 @@
+{
+  "function": {
+    "prefix": "fn",
+    "body": [
+      "fn ${1:name}(${2}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "function"
+  },
+  "class": {
+    "prefix": "class",
+    "body": [
+      "class ${1:Name} {",
+      "\tvar ${2:field}: ${3:Int}",
+      "",
+      "\tinit(${2}: ${3}) {",
+      "\t\tself.${2} = ${2}",
+      "\t}",
+      "\t$0",
+      "}"
+    ],
+    "description": "class with a field and init"
+  },
+  "struct": {
+    "prefix": "struct",
+    "body": [
+      "struct ${1:Name} {",
+      "\tlet ${2:field}: ${3:Int}",
+      "\t$0",
+      "}"
+    ],
+    "description": "struct (immutable value type)"
+  },
+  "enum": {
+    "prefix": "enum",
+    "body": [
+      "enum ${1:Name} {",
+      "\t${2:A}",
+      "\t${3:B}",
+      "}"
+    ],
+    "description": "enum"
+  },
+  "match": {
+    "prefix": "match",
+    "body": [
+      "match ${1:value} {",
+      "\t${2:1} => ${3:0}",
+      "\t_ => ${0:0}",
+      "}"
+    ],
+    "description": "match expression"
+  },
+  "for": {
+    "prefix": "for",
+    "body": [
+      "for ${1:item} in ${2:items} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "for loop"
+  },
+  "test": {
+    "prefix": "test",
+    "body": [
+      "test \"${1:what it checks}\" {",
+      "\tassert(${0:true})",
+      "}"
+    ],
+    "description": "test block (run with `mycel test`)"
+  },
+  "webapp": {
+    "prefix": "webapp",
+    "body": [
+      "import std.web",
+      "",
+      "let app = web.App()",
+      "app.get(\"${1:/}\", req => web.html(\"<h1>${2:Hello}</h1>\"))",
+      "app.run(${3:8000})"
+    ],
+    "description": "web app server with std.web"
+  },
+  "comprehension": {
+    "prefix": "comp",
+    "body": [
+      "[${1:x * 2} for ${2:x} in ${3:items} if ${4:x > 0}]"
+    ],
+    "description": "list comprehension"
+  }
+}
