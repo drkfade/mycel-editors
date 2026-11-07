@@ -9,6 +9,8 @@ let client;
 function mycelPath() { return vscode.workspace.getConfiguration("mycel").get("path") || "mycel"; }
 
 async function startServer(context) {
+  // Restricted Mode: highlighting, themes and the file icon work; nothing that runs a program starts until the folder is trusted.
+  if (!vscode.workspace.isTrusted) return;
   const cmd = mycelPath();
   client = new LanguageClient("mycel", "Mycel Language Server",
     { command: cmd, args: ["lsp"] },
@@ -25,6 +27,7 @@ function quote(s) { return /^[\w@%+=:,./-]+$/.test(s) ? s : `'${s.replace(/'/g, 
 async function runFile() {
   const ed = vscode.window.activeTextEditor;
   if (!ed || ed.document.languageId !== "mycel") return;
+  if (!vscode.workspace.isTrusted) { vscode.window.showInformationMessage("Mycel: trust this folder to run programs (Restricted Mode is on)."); return; }
   if (ed.document.isUntitled) { vscode.window.showInformationMessage("Save the file first, then run it."); return; }
   await ed.document.save();
   let term = vscode.window.terminals.find((t) => t.name === "Mycel" && t.exitStatus === undefined);
@@ -37,6 +40,7 @@ async function activate(context) {
   context.subscriptions.push(
     vscode.commands.registerCommand("mycel.run", runFile),
     vscode.commands.registerCommand("mycel.restartServer", async () => { if (client) await client.stop().catch(() => {}); await startServer(context); }),
+    vscode.workspace.onDidGrantWorkspaceTrust(() => startServer(context)),
     vscode.workspace.onDidChangeConfiguration(async (e) => { if (e.affectsConfiguration("mycel.path")) { if (client) await client.stop().catch(() => {}); await startServer(context); } }),
   );
   await startServer(context);

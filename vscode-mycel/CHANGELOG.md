@@ -13,3 +13,6 @@ First release: highlighting, language server (diagnostics, hover, definition, co
 
 ## 1.1.2
 - Removed the bundled file icon theme; .myc/.olx use the Mycel language icon, shown by icon themes that display language icons.
+
+## 1.1.3
+- Works in Restricted Mode (untrusted folders): highlighting, themes and the icon stay on; the language server and Run wait for trust, and a folder cannot change `mycel.path` until trusted.

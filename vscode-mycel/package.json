@@ -2,7 +2,7 @@
   "name": "mycel",
   "displayName": "Mycel",
   "description": "Mycel language support: syntax highlighting, errors with fixes, hover types, go to definition, completion, outline, and a Run command.",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "publisher": "drkyy",
   "license": "Apache-2.0",
   "icon": "images/icon.png",
@@ -126,5 +126,18 @@
     "ovsx": "0.10.1",
     "vscode-textmate": "9.2.0",
     "vscode-oniguruma": "2.0.1"
+  },
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": "limited",
+      "description": "In Restricted Mode, highlighting, themes and the file icon work; the language server and Run start once the folder is trusted.",
+      "restrictedConfigurations": [
+        "mycel.path"
+      ]
+    },
+    "virtualWorkspaces": {
+      "supported": "limited",
+      "description": "Highlighting only; running and the language server need local files."
+    }
   }
 }
