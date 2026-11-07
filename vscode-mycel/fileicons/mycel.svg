@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="90 50 420 420" width="420" height="420">
+  <!-- Mycel logo: one organic node with four rounded arms and two spores (arms merged with a goo filter). -->
+  <defs>
+    <linearGradient id="mycel-g" x1="150" y1="410" x2="470" y2="190" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e4defd"/>
+      <stop offset="0.55" stop-color="#9688f3"/>
+      <stop offset="1" stop-color="#5642e4"/>
+    </linearGradient>
+    <filter id="goo" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="14"/>
+      <feColorMatrix values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 28 -12"/>
+    </filter>
+    <mask id="shape" maskUnits="userSpaceOnUse" x="90" y="50" width="420" height="420">
+      <g filter="url(#goo)" fill="#fff" stroke="#fff" stroke-linecap="round">
+        <path d="M300 270 C 297 220, 300 170, 293 120" stroke-width="40" fill="none"/>
+        <path d="M300 270 C 250 250, 210 225, 160 214" stroke-width="40" fill="none"/>
+        <path d="M300 270 C 262 300, 225 338, 182 380" stroke-width="42" fill="none"/>
+        <path d="M300 270 C 350 278, 400 290, 440 300" stroke-width="44" fill="none"/>
+        <circle cx="293" cy="112" r="40" stroke="none"/>
+        <circle cx="158" cy="214" r="38" stroke="none"/>
+        <circle cx="178" cy="386" r="42" stroke="none"/>
+        <circle cx="444" cy="300" r="38" stroke="none"/>
+        <circle cx="296" cy="268" r="34" stroke="none"/>
+        <circle cx="421" cy="187" r="27" stroke="none"/>
+        <circle cx="368" cy="403" r="32" stroke="none"/>
+      </g>
+    </mask>
+  </defs>
+  <rect x="90" y="50" width="420" height="420" fill="url(#mycel-g)" mask="url(#shape)"/>
+</svg>
