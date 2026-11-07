@@ -9,5 +9,7 @@
 First release: highlighting, language server (diagnostics, hover, definition, completion, outline), Run command, snippets.
 
 ## 1.1.1
-- File icons: Mycel logo for .myc/.olx via the "Seti + Mycel" file icon theme (VS Code's default Seti theme hides language icons). Seti icons: MIT, Copyright (c) 2014 Jesse Weed (fileicons/SETI-NOTICE.txt).
 - Mycel Dark / Mycel Light color themes, new logo, Apache-2.0.
+
+## 1.1.2
+- Removed the bundled file icon theme; .myc/.olx use the Mycel language icon, shown by icon themes that display language icons.
