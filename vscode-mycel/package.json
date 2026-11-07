@@ -3,7 +3,7 @@
   "displayName": "Mycel",
   "description": "Mycel language support: syntax highlighting, errors with fixes, hover types, go to definition, completion, outline, and a Run command.",
   "version": "1.1.0",
-  "publisher": "olix",
+  "publisher": "drkyy",
   "license": "Apache-2.0",
   "icon": "images/icon.png",
   "homepage": "https://ol1x.xyz/mycel/",
@@ -98,7 +98,7 @@
     },
     "configurationDefaults": {
       "[mycel]": {
-        "editor.defaultFormatter": "olix.mycel"
+        "editor.defaultFormatter": "drkyy.mycel"
       }
     },
     "themes": [
